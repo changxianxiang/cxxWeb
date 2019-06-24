@@ -7,17 +7,30 @@
     body{
         background: beige;
     }
+        input{
+            border: black 0px;
+        }
     </style>
 </head>
 <body>
-    <h1>欢迎注册...<h1>
+    <h2>欢迎注册...</h2>
         <img src="images/logo_black.png">
-<form action="backstage.php" method="get" class="excel">
-          用户名：<input type="text" value="中国大陆手机号码"><br>
-            邮箱：<input type="text"> <br>
-    请输入密码：<input type="password"><br>
-      请再次输入：<input type="password"><br>
-    <input value="提交" type="submit">
+<form action="backstage.php" method="get" class="excel" >
+           用户名：<input height="50px" class="in" type="text" name="userName" autofocus><br>
+             邮箱：<input class="in" type="text"name="userEmail"> <br>
+    请选择您的身份： <input list="identical" name="userIdentify">
+    <datalist id="identical">
+        <option value="学生">
+        <option value="老师">
+    </datalist><br>
+     请选择您的学校：<select>
+        <option>烟台大学</option>
+        <option>清华大学</option>
+        <option>北京大学</option>
+    </select><br>
+        请输入密码：<input class="in" type="password"><br>
+        请再次输入：<input class="in" type="password"><br>
+    <input value="提交" type="image" src="images/logo_black.png" height="40" width="48" alt="Submit">
 </form>
 </body>
 </html>
