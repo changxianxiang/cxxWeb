@@ -40,8 +40,8 @@ if($conn->query($sql)==true){
     echo "faile".$conn->error;
 }*/
 
-if(isset($_COOKIE["$name"])&isset($_SESSION['$name'])){//如果该用户已经注册
-    $sql="select userPassword from information where userName='changxianxiang'";
+if(isset($_COOKIE["$name"])&isset($_SESSION["$name"])){//如果该用户已经注册
+    $sql="select userPassword from information where userName='name'";
     $passwordValid=$conn->query($sql);//从数据库取出密码
     //echo $passwordValid;
     if($passwordValid!=$password){//验证密码
@@ -51,15 +51,33 @@ if(isset($_COOKIE["$name"])&isset($_SESSION['$name'])){//如果该用户已经�
         echo "欢迎回来".$name."这是您第".$_SESSION['$name']."次访问";
     }
 }else{//没注册过
-    setcookie("$name", "$name", time()+3600);//甚至cookie
+    setcookie("$name", "$name", time()+3600);//cookie
     $_SESSION['$name']=1;
     $sql="insert into information(userName,userEmail,userIdentical,userSchool,userPassword)
 values ('$name','$email','$identify','$school','$password')";//存储该用户信息
+
     if($conn->query($sql)==true){
         echo "注册成功","这是您第1次访问";
-    }else{
+        ?>
+                <form action="register.html" method="get">
+         <input type="submit" value="退出登陆" name="back"/>
+        </form>
+
+  <?php  }else{
         echo "注册失败请检查".$conn->error.PHP_EOL;
     }
 }
+/*<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="" method="get">
+<input value="退出登陆" type="submit" height="40" width="48">
+</form>
+</body>
+</html>*/
 //echo $_GET["userName"];
 ?>
