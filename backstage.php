@@ -1,4 +1,6 @@
 <?php
+//imagearc("images",100,100,200,200,200,500);
+session_start();//开始session必须放在最上面
 $conn=new mysqli("localhost","root","root","register");//创建数据库连接
 if($conn->connect_error){
     echo "连接失败".$conn->connect_error;
@@ -29,15 +31,35 @@ $name=empty($_GET["userName"])?die("请输入您的用户名"):$_GET["userName"]
 $email=empty($_GET["userEmail"])?die("请输入您要绑定的邮箱"):$_GET["userEmail"];
 $identify=empty($_GET["userIdentify"])?die("请您进行身份认证"):$_GET["userIdentify"];
 $school=empty($_GET["userSchool"])?die("选择您的学校"):$_GET["userSchool"];
-$passowrd=empty($_GET["mainuserPassword"])?die("输入您的登陆密码"):$_GET["mainuserPassword"];
-$sql="insert into information(userName,userEmail,userIdentical,userSchool,userPassword)
-values ('$name','$email','$identify','$identify','$identify')";
+$password=empty($_GET["mainuserPassword"])?die("输入您的登陆密码"):$_GET["mainuserPassword"];
+/*$sql="insert into information(userName,userEmail,userIdentical,userSchool,userPassword)
+values ('$name','$email','$identify','$school','$password')";
 if($conn->query($sql)==true){
-    //echo "adfadsfdafsdafadsd";
+    echo "注册成功";
 }else{
     echo "faile".$conn->error;
+}*/
+
+if(isset($_COOKIE["$name"])&isset($_SESSION['$name'])){//如果该用户已经注册
+    $sql="select userPassword from information where userName='changxianxiang'";
+    $passwordValid=$conn->query($sql);//从数据库取出密码
+    //echo $passwordValid;
+    if($passwordValid!=$password){//验证密码
+        echo "密码输入错误";
+    }else{
+        $_SESSION['$name']=$_SESSION['$name']+1;
+        echo "欢迎回来".$name."这是您第".$_SESSION['$name']."次访问";
+    }
+}else{//没注册过
+    setcookie("$name", "$name", time()+3600);//甚至cookie
+    $_SESSION['$name']=1;
+    $sql="insert into information(userName,userEmail,userIdentical,userSchool,userPassword)
+values ('$name','$email','$identify','$school','$password')";//存储该用户信息
+    if($conn->query($sql)==true){
+        echo "注册成功","这是您第1次访问";
+    }else{
+        echo "注册失败请检查".$conn->error.PHP_EOL;
+    }
 }
-
-
 //echo $_GET["userName"];
 ?>
