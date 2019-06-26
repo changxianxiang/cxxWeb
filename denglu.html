@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <title>register常宪祥</title>
     <style type="text/css">
-    body{
-        background-image: url("images/timg.jpg");
-    }
-    h2{
-        margin: 30px;
-    }
+        body{
+            background-image: url("images/timg.jpg");
+        }
+        h2{
+            margin: 30px;
+        }
         form{
             margin: 60px;
             border: black 0px;
@@ -41,32 +41,20 @@
     </style>
 </head>
 <body>
-    <div class="title">
-        <h2 align="center">欢迎注册</h2>
-    </div>
-    <pre>
+<div class="title">
+    <h2 align="center">欢迎登陆</h2>
+</div>
+<pre>
 <div class="forms">
-    <form action="backstage.php" method="get" class="excel" >
+    <form action="dengLuBack.php" method="get" class="excel" >
             用户名：<input  class="in" type="text" name="userName" autofocus><br>
-              邮箱：<input class="in" type="text"name="userEmail"> <br>
-     请选择您的身份： <input list="identical" name="userIdentify">
-    <datalist id="identical">
-        <option value="学生">
-        <option value="老师">
-    </datalist><br>
-    请选择您的学校：<select name="userSchool">
-        <option>烟台大学</option>
-        <option>清华大学</option>
-        <option>北京大学</option>
-    </select><br>
-        请输入密码：<input class="in" type="password" name="mainuserPassword"><br>
-        请再次输入：<input class="in" type="password" name="subuserPassword"><br>
+              密码：<input class="in" type="password" name="mainuserPassword"><br>
     <input value="提交" type="image" src="images/logo_black.png" height="40" width="48" alt="Submit">
     </pre>
-    </form>
+</form>
 </div>
 <div class="a">
-    <a href="denglu.html">已有账号 点击登陆</a>
+    <a href="register.html">没有账号 点击注册</a>
 </div>
 </body>
 </html>
